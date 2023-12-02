@@ -1,0 +1,27 @@
+{
+  "name": "advent_of_code_2023",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "check-format": "prettier --check .",
+    "check-lint": "eslint --ext js",
+    "format": "prettier --write .",
+    "test-all": "pnpm run check-format && pnpm run check-lint"
+  },
+  "keywords": [],
+  "author": "Juan Carlos Galué",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "prettier": "^3.1.0",
+    "vitest": "^0.34.6"
+  }
+}
