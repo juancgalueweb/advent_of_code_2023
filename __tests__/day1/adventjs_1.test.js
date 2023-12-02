@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { findFirstRepeated } from '../adventjs_1'
+import { findFirstRepeated } from '../../day1/adventjs_1'
 
 test('Primer regalo repetido', () => {
   expect(findFirstRepeated([2, 1, 3, 5, 3, 2])).toBe(3)

@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { getCalibrationValue, transformString } from '../adventofcode_1'
+import { getCalibrationValue, transformString } from '../../day1/adventofcode_1'
 
 test('Day 1: Trebuchet?!, part 1', () => {
   expect(getCalibrationValue('1abc2')).toBe(12)
@@ -17,4 +17,5 @@ test('Day 1: Trebuchet?!, part 2', () => {
   expect(transformString('abcone2threexyz')).toBe(13)
   expect(transformString('xtwone3four')).toBe(24)
   expect(transformString('4nineeightseven2')).toBe(42)
+  expect(transformString('7pqrstsixteen')).toBe(76)
 })
