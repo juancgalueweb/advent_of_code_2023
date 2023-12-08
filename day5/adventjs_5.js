@@ -23,43 +23,20 @@ const time = 10
 
 function cyberReindeer(road, time) {
   const result = [road] // Estado inicial de la carretera
+  let lastChar = '.'
 
   for (let t = 1; t < time; t++) {
-    // Creamos una copia del estado actual de la carretera para modificarla
-    const currentRoad = result[result.length - 1].split('')
-
-    // Verificamos y actualizamos el estado de las barreras
     if (t === 5) {
-      for (let i = 0; i < currentRoad.length; i++) {
-        if (currentRoad[i] === '|') {
-          currentRoad[i] = '*' // Abrimos la barrera
-        }
-      }
+      road = road.replaceAll('|', '*')
     }
 
-    // Movemos el trineo a la derecha
-    const sledIndex = currentRoad.indexOf('S')
-    const nextIndex = (sledIndex + 1) % currentRoad.length
-
-    if (currentRoad[nextIndex] === '|' && t <= 5) {
-      // Si hay una barrera cerrada, el trineo se detiene
-      currentRoad[sledIndex] = 'S'
-    } else {
-      // Si no, el trineo avanza
-      // Ten en cuenta que si el trineo está en la misma posición que una barrera, entonces toma su lugar en el array.
-      if (currentRoad[nextIndex] === '*' || currentRoad[nextIndex] === '|') {
-        console.log('currentRoad[sledIndex]', currentRoad[sledIndex], sledIndex)
-        console.log('currentRoad[nextIndex]', currentRoad[nextIndex], nextIndex)
-        currentRoad[sledIndex] = currentRoad[nextIndex + 1]
-        currentRoad[nextIndex + 1] = 'S'
-      } else {
-        currentRoad[sledIndex] = currentRoad[nextIndex]
-        currentRoad[nextIndex] = 'S'
-      }
+    const matches = road.match(/S[*.]/g)
+    if (matches) {
+      road = road.replaceAll(matches[0], lastChar + 'S')
+      lastChar = matches[0][1]
     }
 
-    // Guardamos el estado actual de la carretera en el resultado
-    result.push(currentRoad.join(''))
+    result.push(road)
   }
 
   return result
