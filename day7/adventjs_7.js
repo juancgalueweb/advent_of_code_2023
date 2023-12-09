@@ -36,9 +36,12 @@ Las líneas de los regalos se dibujan con # y las caras con el símbolo que nos 
 #
 */
 
-function drawGift(size, symbol) {
-  const remainder = size % 2
-  const gift = symbol.repeat(size / 2 + remainder)
+export function drawGift(size, symbol) {
+  let bgSize = size - 2
+  // esta expresión devuelve 1 si bgSize + 1 es 0,
+  // y devuelve 0 para cualquier otro valor de bgSize + 1.
+  bgSize += +!(bgSize + 1)
+  const gift = symbol.repeat(bgSize)
   const boxChar = '#'
   let count = 0
   if (size === 1) {
@@ -46,6 +49,7 @@ function drawGift(size, symbol) {
   }
   let result = ''
   let beginAndEnd
+
   for (let i = 0; i < size * 2 - 1; i++) {
     const initialSpace = ' '.repeat(Math.max(0, size - 1 - i))
 
@@ -57,17 +61,17 @@ function drawGift(size, symbol) {
     const side =
       beginAndEnd.substring(0, 1) + gift + beginAndEnd.substring(0, 1)
 
-    if (i > 0 && i <= Math.floor(size / 2) + (size % 2)) {
+    if (i > 0 && i <= size - 2) {
       result += initialSpace + side + symbol.repeat(count) + boxChar + '\n'
       count++
     }
 
-    if (i === size - 1) {
+    if (i === size) {
       result += beginAndEnd + symbol.repeat(count) + boxChar + '\n'
     }
 
     if (i > size - 1 && i < size * 2 - 2) {
-      count--
+      count = count - 1
       result += side + symbol.repeat(count) + boxChar + '\n'
     }
 
@@ -75,9 +79,20 @@ function drawGift(size, symbol) {
       result += beginAndEnd + '\n'
     }
   }
-  return result.toString()
+  return result
 }
 
-console.log(drawGift(4, '+'))
-console.log(drawGift(5, '*'))
-console.log(drawGift(1, '^'))
+// console.log('size 4')
+// console.log(drawGift(4, '+'))
+// console.log('size 5')
+// console.log(drawGift(5, '*'))
+// console.log('size 1')
+// console.log(drawGift(1, '^'))
+// console.log('size 2')
+// console.log(drawGift(2, '&'))
+// console.log('size 3')
+// console.log(drawGift(3, '$'))
+// console.log('size 6')
+// console.log(drawGift(6, '%'))
+// console.log('size 10')
+// console.log(drawGift(10, '@'))
