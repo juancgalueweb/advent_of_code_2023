@@ -9,4 +9,5 @@ test('Reto 14: evita la alarma', () => {
   expect(maxGifts([1, 2, 3, 1])).toBe(4)
   expect(maxGifts([2, 7, 9, 3, 1])).toBe(12)
   expect(maxGifts([0, 0, 0, 0, 1])).toBe(1)
+  expect(maxGifts([3, 4, 5])).toBe(8)
 })
