@@ -28,5 +28,6 @@ export function maxGifts(houses) {
     dp[i] = Math.max(dp[i - 1], dp[i - 2] + houses[i])
   }
 
+  // Regresamos el valor máximo de regalos que se pueden entregar
   return dp[houseQty - 1]
 }
