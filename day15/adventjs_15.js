@@ -42,6 +42,7 @@ export function autonomousDrive(store, movements) {
   const storeColumns = store[0].length
   const newStore = store.map((row) => row.split(''))
 
+  // Determina la ubicación inicial del robot
   store.forEach((row, index) => {
     const robotIndex = row.indexOf('!')
     if (robotIndex !== -1) {
