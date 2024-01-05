@@ -49,38 +49,37 @@ const store2 = [
 
 const failedTest = [['*', ' ', '*']]
 
-//! NO FUNCIONA DEL TODO BIEN, FALLAS UNOS TEST SECRETOS
 function revealSabotage(store) {
-  const storeCopy = store.map((row) => [...row])
-  const size = store.length
-  for (let row = 0; row < size; row++) {
-    for (let col = 0; size === 1 ? col <= size + 1 : col < size; col++) {
-      if (store[row][col] === '*') {
-        continue
-      }
-      let count = 0
-      for (let i = -1; i <= 1; i++) {
-        for (let j = -1; j <= 1; j++) {
-          const newRow = row + i
-          const newCol = col + j
+  const rowLength = store.length
+  const colLength = store[0].length
 
-          if (
-            newRow >= 0 &&
-            newRow < size &&
-            newCol >= 0 &&
-            (size === 1 ? newCol <= size + 1 : newCol < size) &&
-            !(i === 0 && j === 0)
-          ) {
-            if (store[newRow][newCol] === '*') {
-              count++
-            }
-          }
+  const possibleNeighbors = [
+    [-1, -1],
+    [-1, 0],
+    [-1, 1],
+    [0, -1],
+    [0, 1],
+    [1, -1],
+    [1, 0],
+    [1, 1]
+  ]
+
+  for (let row = 0; row < rowLength; row++) {
+    for (let col = 0; col < colLength; col++) {
+      if (store[row][col] === '*') continue
+      let sabotagedGifts = 0
+
+      for (const neighbor of possibleNeighbors) {
+        if (store[row + neighbor[0]]?.[col + neighbor[1]] === undefined)
+          continue
+        if (store[row + neighbor[0]]?.[col + neighbor[1]] === '*') {
+          sabotagedGifts++
         }
       }
-      storeCopy[row][col] = count === 0 ? ' ' : count.toString()
+      store[row][col] = sabotagedGifts === 0 ? ' ' : sabotagedGifts.toString()
     }
   }
-  return storeCopy
+  return store
 }
 
 console.table(revealSabotage(failedTest))
